@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>{% block document-title %}{% endblock %}</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+		{% load static %}
+		<!-- CSS -->
+		<link rel="stylesheet" type="text/css" href="{% static 'app/css/reset.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'app/css/root.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'app/css/goji.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'app/css/inputs.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'app/css/main.css' %}">
+		<!-- JS -->
+		<script src="{% static 'app/js/Polyfills-19.6.20.js' %}"></script>
+		<script src="{% static 'app/js/SimpleRequest-19.6.20.class.js' %}"></script>
+	</head>
+	<body>
+		{% block header %}
+			<header class="header__main">
+				<div class="header__container">
+					<a href="/" class="header__logo">
+						test.django
+					</a>
+
+					<nav class="nav__main">
+						<a href="home">Home</a>
+						<a href="about">About</a>
+						<a href="contact">Contact</a>
+					</nav>
+
+					<div class="nav__burger-menu">
+						<div></div>
+						<div></div>
+						<div></div>
+					</div>
+				</div>
+			</header>
+
+			<script>
+				(function () {
+
+					/* <BURGER MENU> */
+
+					let navBurgerMenu = document.querySelector('.nav__burger-menu');
+					let nav = document.querySelector('.nav__main');
+
+					// Toggle menu visibility in burger menu mode
+					navBurgerMenu.addEventListener('click', function() {
+						// toggle()'s second parameter hasn't great support in older browsers
+						if (this.classList.toggle('cross'))
+							nav.classList.add('shown');
+						else
+							nav.classList.remove('shown');
+					}, false);
+
+				})();
+			</script>
+		{% endblock %}
+
+		{% block content %}{% endblock %}
+
+		{% block footer %}
+			<footer class="footer__minimal"></footer>
+		{% endblock %}
+	</body>
+</html>

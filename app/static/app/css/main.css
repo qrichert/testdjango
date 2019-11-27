@@ -1,0 +1,39 @@
+@charset "utf-8";
+
+/* <HOME> */
+
+.header__logo {
+    font-weight: bold;
+    font-size: var(--text-size-big);
+}
+
+.home__django-logo {
+    max-width: 100%;
+    width: 200px;
+    display: block;
+    margin: calc(2 * var(--gutter-default)) auto;
+}
+
+/* <CONTACT> */
+
+.contact__help-message {
+	padding: 0 var(--gutter-default);
+}
+
+.contact__help-message > :first-child {
+	margin-top: 0;
+}
+
+.contact__help-message > :last-child {
+	margin-bottom: 0;
+}
+
+/* Up to to 920px */
+@media all and (max-width: 920px) {
+
+	/* Mimic section.side-by-side form */
+	.contact__help-message {
+		padding-left: 0;
+		padding-right: 0;
+	}
+}

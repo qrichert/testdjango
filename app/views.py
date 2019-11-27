@@ -5,6 +5,36 @@ from django.shortcuts import render
 
 
 def home(request):
-	return HttpResponse("""
-	Hello, world!
-	""")
+	title = 'hello, world!'
+
+	return render(
+		request,
+		'app/page/home.template.html',
+		{
+			'title': title
+		}
+	)
+
+
+def about(request):
+	title = 'About'
+
+	return render(
+		request,
+		'app/page/about.template.html',
+		{
+			'title': title
+		}
+	)
+
+
+def contact(request):
+	title = 'Contact'
+
+	return render(
+		request,
+		'app/page/contact.template.html',
+		{
+			'title': title
+		}
+	)

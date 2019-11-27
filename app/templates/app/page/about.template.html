@@ -1,0 +1,30 @@
+{% extends 'app/base.template.html' %}
+{% load static %}
+
+{% block document-title %}{{ title }}{% endblock %}
+
+{% block content %}
+	<main>
+		<section class="text">
+			<h1 class="hidden" aria-hidden="true">{{ title }}</h1>
+
+			<img src="{% static 'app/img/django-logo-positive.svg' %}" alt="" class="home__django-logo">
+
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque quis massa in libero tincidunt mattis. Ut euismod convallis sem nec volutpat. Mauris a porttitor erat. Quisque euismod commodo euismod. Aenean malesuada consequat rutrum. Suspendisse at felis finibus, condimentum est eget, facilisis justo. Aliquam euismod mi quis orci iaculis sodales. Phasellus fringilla finibus posuere. Nullam a ipsum neque. Nulla aliquam commodo ex vitae lacinia. Pellentesque ultrices lorem semper nulla dignissim pharetra ut at urna. Vestibulum feugiat arcu tortor, a tristique nisl imperdiet dapibus.
+			</p>
+			<p>
+				Vivamus justo eros, tempus in dolor, fermentum cursus nisi. Nulla at porttitor est. Vivamus pellentesque nulla felis, vel varius ex feugiat nec. Pellentesque dictum at nisi eu commodo. Donec interdum eleifend tortor, id elementum urna egestas non. Suspendisse tincidunt eu libero quis fringilla. Ut dolor risus, iaculis sed tempus ut, faucibus suscipit felis. Suspendisse semper pretium nibh eu aliquam. Integer a lectus a neque pretium efficitur ac sed erat.
+			</p>
+			<p>
+				Cras pharetra porta iaculis. Nullam ultricies id massa nec ultricies. Vestibulum gravida sit amet dui at tempor. Aliquam rhoncus metus vitae semper ultricies. Ut turpis nisi, tincidunt eget quam in, pharetra fringilla turpis. Donec id scelerisque ligula. Sed posuere blandit malesuada. Pellentesque cursus viverra magna. Pellentesque purus elit, tristique sed justo laoreet, ornare pretium tellus.
+			</p>
+			<p>
+				Nulla vitae magna at urna vulputate auctor mattis a libero. Donec vitae volutpat dui. Aliquam aliquet aliquet sagittis. Morbi efficitur at orci vitae tincidunt. Mauris rhoncus velit ac lacus pharetra, in pretium nibh malesuada. Morbi venenatis dolor pulvinar, molestie massa non, condimentum odio. Praesent in nunc suscipit, volutpat dolor nec, porta libero. Sed lacinia viverra tincidunt. Ut nibh lectus, faucibus sit amet vehicula ut, hendrerit vitae lacus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vestibulum a lorem nisl. Cras ornare pulvinar nisi vel gravida. Maecenas eros quam, pretium ac tellus a, fringilla blandit sem. Proin in neque at purus ultrices convallis.
+			</p>
+			<p>
+				Pellentesque facilisis maximus metus accumsan pretium. Donec risus justo, commodo ultrices purus in, finibus iaculis velit. Aenean in ultricies nunc, quis pulvinar augue. Phasellus est nibh, sollicitudin sit amet lacinia vel, lobortis efficitur felis. Curabitur ac urna eu turpis eleifend convallis. Donec bibendum ultricies augue, at convallis ligula pretium vitae. Curabitur vestibulum in ante a rutrum. Ut vitae cursus quam, et rhoncus neque. Sed pharetra scelerisque aliquet. Maecenas hendrerit, est eu efficitur sagittis, mi lacus vulputate velit, eget ullamcorper turpis sem ac tellus. Integer facilisis, nulla ut iaculis porttitor, enim diam porttitor velit, in bibendum dolor dui ut urna. Vivamus nunc leo, fringilla eget nulla id, maximus congue augue. Quisque tristique augue nec sapien dignissim lacinia. Vivamus molestie risus in faucibus sollicitudin.
+			</p>
+		</section>
+	</main>
+{% endblock %}

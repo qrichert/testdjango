@@ -1,0 +1,1227 @@
+@charset "utf-8";
+
+/* <EXTRAS> */
+
+::selection {
+	background-color: var(--color-highlight);
+	color: white;
+}
+
+/* <GENERAL> */
+
+*:focus { outline: 0; }
+
+html, body {
+	/* Footer at bottom */
+	height: 100%;
+}
+
+html {
+	font-size: var(--text-size-default);
+	/*-webkit-font-kerning: normal;*/
+	/*-webkit-font-smoothing: antialiased;*/
+	/*-moz-osx-font-smoothing: grayscale;*/
+	/*font-kerning: normal;*/
+	/*text-rendering: optimizeLegibility;*/
+}
+
+body {
+	font-family: var(--font-default);
+	background-color: var(--color-body);
+	color: var(--color-text-default);
+
+	/* Not necessary with reset.css */
+	padding: 0;
+	margin: 0;
+	line-height: 1.2;
+
+	/* Footer at bottom */
+	display: flex;
+	flex-direction: column;
+}
+
+body > * {
+	/* Footer at bottom */
+	flex-shrink: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight: bold;
+	font-family: var(--font-title);
+}
+
+h1 { font-size: 3em;	margin: 1.1em  0; }
+h2 { font-size: 1.7em;	margin: 1em    0; }
+h3 { font-size: 1.17em;	margin: 1.07em 0; }
+h4 { font-size: 1em;	margin: 1.12em 0; }
+h5 { font-size: 0.83em;	margin: 1.5em  0; }
+h6 { font-size: 0.75em;	margin: 1.67em 0; }
+
+h1 > a:not(:hover), h2 > a:not(:hover), h3 > a:not(:hover),
+h4 > a:not(:hover), h5 > a:not(:hover), h6 > a:not(:hover) {
+	color: inherit;
+	text-decoration: none;
+}
+
+h1 + p, h2 + p, h3 + p,
+h4 + p, h5 + p, h6 + p {
+	margin-top: 0;
+}
+
+p, ul, ol, figcaption, textarea.content-like {
+	margin: 1.5em 0;
+	line-height: 1.5;
+}
+
+figcaption, p.caption {
+	margin: 1em 0;
+	font-size: var(--text-size-small);
+	font-style: italic;
+	line-height: initial;
+}
+
+pre {
+	font-family: monospace;
+}
+
+a {
+	text-decoration: none;
+	cursor: pointer;
+	color: var(--color-link);
+}
+
+a:hover {
+	text-decoration: underline;
+	color: var(--color-link-hover);
+}
+
+hr {
+	border: none;
+	border-top: 1px solid var(--color-text-xxxxxlight);
+	margin: 1.5em 0 1.7em 0;
+}
+
+code {
+	font-size: 85%;
+	font-family: var(--font-code);
+	background-color: rgba(27, 31, 35, 0.05);
+	padding: 0.2em 0.4em;
+	margin: 0;
+	border-radius: 3px;
+}
+
+pre > code {
+	display: block;
+	padding: 0.6em;
+	overflow-x: scroll;
+}
+
+/* <GENERIC CLASSES> */
+
+.hidden {
+	display: none !important;
+}
+
+.spacer {
+	display: block;
+	width: 100%;
+	margin: var(--gutter-medium) 0 0 0;
+	padding: 0;
+	background-color: transparent;
+}
+
+.scalable {
+	transition: transform var(--transition-default);
+}
+
+.scalable:hover {
+	transform: scale(1.023);
+}
+
+.rounded {
+	border-radius: var(--border-radius-medium);
+}
+
+.aligned--left { text-align: left; }
+.aligned--right { text-align: right; }
+.aligned--center { text-align: center; }
+
+/* Pre Heading / Sub Heading */
+
+.pre-heading,
+.sub-heading {
+	margin: 0;
+	font-family: var(--font-code);
+	font-size: var(--text-size-medium);
+	color: var(--color-text-xxlight);
+}
+
+.pre-heading + h1, .pre-heading + h2, .pre-heading + h3,
+.pre-heading + h4, .pre-heading + h5, .pre-heading + h6 {
+	margin-top: var(--gutter-thin);
+}
+
+/*
+ * Sadly, we don't have parent selectors, so we have to cheat by moving the sub-heading
+ * up, directly under the title, and then adding the regular margin under it.
+ *
+ * We calculate the Xem thing is the title default margin (em size * em margin), then
+ * we substract --gutter-thin to it, because we want that as a margin between the title
+ * and the sub-heading => This gives a negative value = negative margin = moves up
+ *
+ * The we add the value we substracted back to the margin-bottom, to keep the right amount
+ * of space from the rest of the content => This time positive value, but the same absolute
+ * number as before.
+ */
+h1 + .sub-heading { margin-top: calc(var(--gutter-thin) - 3.3em);  margin-bottom: calc(3.3em - var(--gutter-thin));  }
+h2 + .sub-heading { margin-top: calc(var(--gutter-thin) - 1.7em);  margin-bottom: calc(1.7em - var(--gutter-thin));  }
+h3 + .sub-heading { margin-top: calc(var(--gutter-thin) - 1.25em); margin-bottom: calc(1.25em - var(--gutter-thin)); }
+h4 + .sub-heading { margin-top: calc(var(--gutter-thin) - 1.12em); margin-bottom: calc(1.12em - var(--gutter-thin)); }
+h5 + .sub-heading { margin-top: calc(var(--gutter-thin) - 1.25em); margin-bottom: calc(1.25em - var(--gutter-thin)); }
+h6 + .sub-heading { margin-top: calc(var(--gutter-thin) - 1.25em); margin-bottom: calc(1.25em - var(--gutter-thin)); }
+
+/* Iframe Videos */
+
+.video-wrapper {
+	display: block;
+	position: relative;
+	overflow: hidden;
+	max-width: 100%;
+	padding-bottom: 56.25%;
+}
+
+.video-wrapper > iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+/* Loading Dots */
+
+.loading-dots {
+	width: 6px !important;
+	height: 6px !important;
+	background-color: var(--color-text-xxxlight);
+	border-radius: 50%;
+	position: relative;
+	animation-name: loading-dots;
+	animation-duration: 700ms;
+	animation-iteration-count: infinite;
+	animation-delay: 0ms;
+	margin: 10px auto 10px auto;
+	display: none;
+}
+
+.loading-dots.loading {
+	display: block;
+}
+
+.loading-dots::before,
+.loading-dots::after {
+	content: '';
+	width: inherit;
+	height: inherit;
+	background-color: inherit;
+	border-radius: inherit;
+	position: absolute;
+	top: 0;
+}
+
+.loading-dots::before {
+	left: -8px;
+	animation-name: loading-dots;
+	animation-duration: 700ms;
+	animation-iteration-count: infinite;
+	animation-delay: 100ms;
+}
+
+.loading-dots::after {
+	right: -8px;
+	animation-name: loading-dots;
+	animation-duration: 700ms;
+	animation-iteration-count: infinite;
+	animation-delay: var(--transition-duration-default);
+}
+
+/* Dialogs */
+
+.dialog__parent,
+.dialog {
+	opacity: 0;
+	transition: opacity var(--transition-default),
+				transform var(--transition-default);
+}
+
+.dialog__parent.shown,
+.dialog__parent.shown .dialog {
+	opacity: 1;
+	transform: scale(1);
+}
+
+.dialog__parent {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	background-color: var(--color-default-seethrough);
+	z-index: 9999;
+	visibility: hidden;
+}
+
+.dialog__parent.shown {
+	visibility: visible;
+}
+
+.dialog {
+	margin: auto;
+	max-width: 95vw;
+	background-color: white;
+	border-radius: var(--border-radius-default);
+	opacity: 0.7;
+	transform: scale(0.7);
+}
+
+/* Table */
+
+table,
+.table {
+	margin: var(--gutter-default) 0;
+	border-radius: var(--border-radius-default);
+	box-shadow: var(--shadow-default);
+	box-sizing: border-box;
+	overflow: hidden;
+}
+
+tr,
+.table__tr {
+	display: flex;
+	flex-direction: row;
+}
+
+td, th,
+.table__td, .table__th {
+	margin: 0;
+	padding: var(--gutter-xthin) var(--gutter-thin);
+	width: 100%;
+}
+
+th,
+.table__th {
+	font-size: 1em;
+	line-height: inherit;
+	font-weight: bold;
+	color: white;
+	font-family: inherit;
+	text-align: left;
+	background-color: var(--color-highlight);
+	text-decoration: none;
+}
+
+td:not(:last-child),
+.table__td:not(:last-child) {
+	border-right: 1px solid var(--color-text-xxxxxlight);
+}
+
+tr:not(:last-child) td,
+.table__tr:not(:last-child) .table__td {
+	border-bottom: 1px solid var(--color-text-xxxxxlight);
+}
+
+/* Other elements */
+
+.toolbar {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	flex-wrap: wrap;
+}
+
+.toolbar.main-toolbar { /* Top-of-the page, main toolbar */
+	margin-bottom: calc(2 * var(--gutter-default));
+}
+
+.toolbar > *:not(:first-child) {
+	margin-left: var(--gutter-thin);
+}
+
+.action-item__wrapper {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: flex-start;
+	flex-wrap: wrap;
+}
+
+.action-item {
+	width: 130px;
+	background-color: var(--color-text-xxxxxlight);
+	border-radius: var(--border-radius-default);
+	margin: 0 var(--gutter-thin) var(--gutter-thin) 0;
+	padding: var(--gutter-medium);
+	box-sizing: border-box;
+	display: inline-flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	position: relative;
+	overflow: hidden;
+}
+
+.action-item:hover {
+	background-color: var(--color-highlight-halo);
+	text-decoration: none;
+}
+
+.action-item::after {
+	content: '';
+	display: none;
+	position: absolute;
+	right: var(--gutter-xthin);
+	bottom: var(--gutter-xthin);
+	width: 15px;
+	height: 15px;
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;
+	transform-origin: center center;
+}
+
+.action-item.loading::after {
+	background-image: url('lib/Goji/img/loading-dots--medium.svg');
+	background-size: contain;
+	animation: loading 1s ease infinite;
+	display: block;
+}
+
+.action-item.success::after {
+	width: 19px;
+	background-image: url('lib/Goji/img/right-wrong.svg');
+	background-position: top left;
+	display: block;
+}
+
+.action-item.error::after {
+	width: 19px;
+	background-image: url('lib/Goji/img/right-wrong.svg');
+	background-position: top right;
+	display: block;
+}
+
+.action-item.loading,
+.action-item.loading:hover {
+	background-color: var(--color-highlight-halo);
+}
+
+.action-item.success,
+.action-item.success:hover {
+	background-color: var(--color-valid-light);
+}
+
+.action-item.error,
+.action-item.error:hover {
+	background-color: var(--color-danger-light);
+}
+
+.action-item__progress {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 0%;
+	height: 100%;
+	background-image: linear-gradient(to right, #00000000, rgba(0, 0, 0, 0.04));
+	opacity: 0;
+	transition: opacity var(--transition-default);
+}
+
+.action-item__progress.loading {
+	visibility: visible;
+	opacity: 1;
+}
+
+.action-item .action-item__icon {
+	width: 77px;
+	height: 57px;
+	object-fit: contain;
+	object-position: center;
+	margin-bottom: var(--gutter-medium);
+}
+
+.action-item .action-item__caption {
+	font-size: var(--text-size-medium);
+	text-align: center;
+}
+
+/* <HEADER> */
+
+.header__main {
+	width: 100%;
+	height: var(--header-height);
+	display: flex;
+	background-color: var(--color-header);
+}
+
+.header__container {
+	width: 100%;
+	max-width: 1280px;
+	margin: auto;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	align-items: center;
+	padding-left: calc(3 * var(--gutter-default));
+	padding-right: calc(3 * var(--gutter-default));
+	box-sizing: border-box;
+	position: relative;
+}
+
+.header__logo {
+	margin-right: auto;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+	color: var(--color-nav-link);
+	font-family: var(--font-title);
+	text-decoration: none !important; /* In case there's text. */
+}
+
+.header__logo :not(:first-child) {
+	margin-left: var(--gutter-thin);
+}
+
+.header__logo > img {
+	margin: auto;
+	height: calc(var(--header-height) * 0.5);
+	max-width: 257px;
+}
+
+img.header__logo {
+	height: calc(var(--header-height) * 0.5);
+	max-width: 257px;
+}
+
+/* <NAV> */
+
+.nav__main {
+	display: flex;
+	align-items: center;
+	box-sizing: border-box;
+	flex-shrink: 0;
+}
+
+.nav__main > a {
+	font-family: var(--font-title);
+	text-decoration: none;
+	opacity: 0.92;
+	transition: opacity var(--transition-medium),
+				transform var(--transition-medium);
+}
+
+.nav__main > a:hover {
+	opacity: 1;
+	text-decoration: none;
+}
+
+/* <BURGER MENU> */
+
+.nav__burger-menu {
+	flex-shrink: 0;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	cursor: pointer;
+	width: calc(var(--burger-menu-width) * 0.9);
+	height: calc(var(--burger-menu-height) * 0.9);
+	margin-left: var(--gutter-default);
+	z-index: 3001;
+	transition: height var(--transition-default);
+}
+
+.nav__burger-menu:hover,
+.nav__burger-menu.cross {
+	height: calc(var(--burger-menu-height-unfolded) * 0.9);
+}
+
+.nav__burger-menu div {
+	width: 100%;
+	height: var(--burger-menu-bar-height);
+	background-color: var(--color-burger-menu);
+	border-radius: calc(var(--burger-menu-bar-height) / 2);
+	/* To inverse, use calc(var(--burger-menu-bar-height) / 2) for both */
+	transform-origin: calc(100% - var(--burger-menu-bar-height) / 4)
+					  calc(var(--burger-menu-bar-height) / 2);
+	transition: transform var(--transition-default),
+				opacity var(--transition-default),
+				background-color var(--transition-default);
+}
+
+.nav__burger-menu.cross div {
+	background-color: var(--color-burger-menu-alt);
+}
+
+.nav__burger-menu.cross div:nth-child(1) { transform: rotate(-45deg); }
+.nav__burger-menu.cross div:nth-child(2) { opacity: 0; }
+.nav__burger-menu.cross div:nth-child(3) { transform: rotate(45deg); }
+
+/* <FOOTER> */
+
+/* Minimal */
+
+.footer__minimal {
+	padding: var(--gutter-default);
+	width: 100%;
+	color: var(--color-text-light);
+	font-size: var(--text-size-small);
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	align-items: flex-start;
+	flex-wrap: wrap;
+}
+
+.footer__minimal > :not(:first-child) {
+	margin-left: var(--gutter-medium);
+}
+
+/* Normal */
+
+.footer__main {
+	width: 100%;
+	/* 'auto' for footer at bottom */
+	margin: auto 0 0 0;
+	display: flex;
+	background-color: var(--color-footer);
+	color: var(--color-text-light);
+	font-size: var(--text-size-small);
+}
+
+.footer__container {
+	width: 100%;
+	max-width: 1280px;
+	margin: auto;
+	padding: var(--gutter-default) calc(3 * var(--gutter-default));
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: flex-start;
+}
+
+.footer__main-content {
+	/* Footer children are aligned in row. */
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: flex-start;
+	flex-wrap: wrap;
+}
+
+.footer__main-content > :not(:last-child) {
+	/* Margin right so lines aligns left when wrapped. */
+	margin-right: var(--gutter-medium);
+}
+
+.footer__main-content > div > * {
+	/* Footer sub-children are aligned in column if their parent is a <div>
+	   (<div>s only because we don't want to mess with inline content). */
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+}
+
+.footer__explore {
+	margin-left: auto;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	align-items: flex-start;
+	flex-wrap: wrap;
+}
+
+.footer__explore > * {
+	/* First element included, so it makes a margin from .footer__main-content. */
+	margin-left: var(--gutter-medium);
+}
+
+.footer__main p {
+	margin: 0;
+}
+
+.footer__main p,
+.footer__main a {
+	line-height: 2em;
+}
+
+.footer__main a img {
+	/* Because it has no space from line-height*/
+	padding: var(--gutter-xthin) 0;
+}
+
+/* <MAIN> */
+
+/*
+ * <main> is like a frame, it has no particular formatting.
+ * It's supposed to hold <section>s that act like widgets.
+ */
+
+main {
+	width: 100%;
+	margin: auto;
+	padding: var(--gutter-default) 0 calc(2 * var(--gutter-default)) 0; /* Completed by sections' padding. */
+
+	/* Footer at bottom */
+	flex-grow: 1;
+	flex-basis: auto;
+}
+
+main > * {
+	box-sizing: border-box;
+}
+
+main > :first-child {
+	margin-top: 0;
+}
+
+/* <Centered Layout> */
+
+main.centered {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+/* <SECTIONS> */
+
+/*
+ * <main> is composed of <section>s.
+ * They are like widgets we put into a frame.
+ */
+
+section {
+	width: 100%;
+	box-sizing: border-box;
+	padding: var(--gutter-default);
+}
+
+section > :first-child {
+	margin-top: 0;
+}
+
+section > :last-child {
+	margin-bottom: 0;
+}
+
+/* <Section Centered> */
+
+section.centered {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+/* <Section No Padding> */
+
+section.no-padding {
+	padding: 0;
+}
+
+section.no-padding.h {
+	padding: var(--gutter-default) 0;
+}
+
+section.no-padding.v {
+	padding: 0 var(--gutter-default);
+}
+
+section.no-padding.t {
+	padding: 0 var(--gutter-default) var(--gutter-default) var(--gutter-default);
+}
+
+section.no-padding.r {
+	padding: var(--gutter-default) 0 var(--gutter-default) var(--gutter-default);
+}
+
+section.no-padding.b {
+	padding: var(--gutter-default) var(--gutter-default) 0 var(--gutter-default);
+}
+
+section.no-padding.l {
+	padding: var(--gutter-default) var(--gutter-default) var(--gutter-default) 0;
+}
+
+/* <Section Error> */
+
+/*
+ * For HTTP errors:
+ *
+ * section
+ *     - h1 -> error
+ *     - p -> error description
+ */
+
+section.error {
+	text-align: center;
+	padding-bottom: calc(2 * var(--gutter-default));
+}
+
+section.error > h1 {
+	font-size: 6em;
+	margin-bottom: 0;
+}
+
+section.error > h1 + p {
+	color: var(--color-text-light);
+	margin: 1em 0;
+}
+
+/* <Section Text> */
+
+/*
+ * For content (e.g. articles)
+ *
+ * section
+ *     - *
+ */
+
+section.text {
+	max-width: 800px;
+	margin: auto;
+	padding-right: 5%;
+}
+
+section.text img {
+	max-width: 100%;
+}
+
+/* <Section Text With Outline> */
+
+@media screen and (min-width: 1405px) {
+
+	section.text.with-outline > .outline {
+		display: block;
+		width: calc(((100vw - 800px) / 2) - (2 * var(--gutter-default)));
+		position: fixed;
+		top: var(--header-height);
+		left: var(--gutter-default);
+		box-sizing: border-box;
+		padding: var(--gutter-default) 0 var(--gutter-default) 40px;
+		margin: var(--gutter-default);
+	}
+}
+
+/* <Section Side-by-Side> */
+
+section.side-by-side {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: flex-start;
+	max-width: 1170px;
+	margin: auto;
+}
+
+section.side-by-side > * {
+	width: 50%;
+	padding: var(--gutter-default) calc(2 * var(--gutter-default));
+	box-sizing: border-box;
+}
+
+section.text > section.side-by-side {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+section.text > section.side-by-side > * {
+	padding-left: var(--gutter-default);
+	padding-right: var(--gutter-default);
+}
+
+section.side-by-side > * * {
+	max-width: 100%;
+}
+
+section.side-by-side.left-bigger > :first-child {
+	width: var(--golden-ratio-percent-largest);
+}
+
+section.side-by-side.left-bigger > :last-child {
+	width: var(--golden-ratio-percent-smallest);
+}
+
+section.side-by-side.right-bigger > :first-child {
+	width: var(--golden-ratio-percent-smallest);
+}
+
+section.side-by-side.right-bigger > :last-child {
+	width: var(--golden-ratio-percent-largest);
+}
+
+/* <Section Video> */
+
+/*
+ * Add a .video-wrapper > iframe in there
+ */
+
+section.video {
+	width: 75%;
+	max-width: calc(700px + (2 * var(--gutter-default)));
+	margin: auto;
+}
+
+/* <FORM> */
+
+form {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+	padding: var(--gutter-default);
+	box-sizing: border-box;
+}
+
+form.form__centered {
+	width: 300px;
+}
+
+form.form__centered .form__success,
+form.form__centered .form__error {
+	text-align: center;
+}
+
+form > * {
+	width: 100%;
+	box-sizing: border-box;
+}
+
+form > :first-child {
+	margin-top: 0;
+}
+
+form > h1, form > h2, form > h3,
+form > h4, form > h5, form > h6 {
+	margin-bottom: var(--gutter-medium);
+}
+
+.form__help-text {
+	margin: var(--gutter-thin) 0;
+}
+
+.form__success,
+.form__error {
+	margin: var(--gutter-thin) 0;
+}
+
+.form__success:empty ,
+.form__error:empty {
+	display: none;
+}
+
+.form__success {
+	color: var(--color-valid);
+}
+
+.form__error {
+	color: var(--color-danger);
+}
+
+.form__logo {
+	width: 50px;
+}
+
+label {
+	font-weight: bold;
+	margin: var(--gutter-xthin) 0;
+}
+
+.form__label-relative {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: flex-end;
+	margin: var(--gutter-xthin) 0;
+}
+
+.form__label-relative > label {
+	margin: 0; /* .form__label-relative replaces label as frame */
+}
+
+.form__side-info {
+	font-size: var(--text-size-small);
+}
+
+/* <RESPONSIVE> */
+
+/* Down to 1081px */
+@media all and (min-width: 1081px) {
+
+	.nav__main > a {
+		margin-left: calc(2.3 * var(--gutter-default));
+	}
+}
+
+/* Up to 1080px */
+@media all and (max-width: 1080px) {
+
+	.nav__main > a {
+		margin-left: calc(1.7 * var(--gutter-default));
+	}
+}
+
+/* Up to to 920px */
+@media all and (max-width: 920px) {
+
+	h1 { font-size: 2.5em; margin: 1em  0; }
+	h2 { font-size: 1.5em; margin: 1em  0; }
+
+	/* Adapting those */
+	h1 + .sub-heading { margin-top: calc(var(--gutter-thin) - 2.5em); margin-bottom: calc(2.5em - var(--gutter-thin)); }
+	h2 + .sub-heading { margin-top: calc(var(--gutter-thin) - 1.5em); margin-bottom: calc(1.5em - var(--gutter-thin)); }
+
+	.header__container {
+		padding-left: calc(1.5 * var(--gutter-default));
+		padding-right: calc(1.5 * var(--gutter-default));
+	}
+
+	.nav__main > a {
+		margin-left: calc(1 * var(--gutter-default));
+	}
+
+	.footer__container {
+		padding-left: calc(1.5 * var(--gutter-default));
+		padding-right: calc(1.5 * var(--gutter-default));
+	}
+
+	section.side-by-side {
+		flex-direction: column;
+		align-items: center;
+		justify-content: flex-start;
+	}
+
+	section.side-by-side > * {
+		width: 100% !important; /* Must overwrite .left|right-bigger > :first|last-child */
+		padding-left: 0;
+		padding-right: 0;
+		max-width: 800px; /* Like section.text */
+	}
+
+	section.side-by-side.reverse-on-squeeze {
+		flex-direction: column-reverse;
+	}
+
+	section.side-by-side > .image * {
+		display: block;
+		width: 100%;
+		max-width: 400px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	/* We don't want side-by-side padding + form padding on small viewports */
+	section.side-by-side form {
+		padding-left: 0;
+		padding-right: 0;
+	}
+}
+
+/* Down to 701px */
+@media all and (min-width: 701px) {
+
+	.nav__main {
+		flex-direction: row;
+		justify-content: flex-end;
+	}
+
+	.nav__main > a {
+		color: var(--color-nav-link);
+		transition: margin-left var(--transition-default);
+	}
+
+	.nav__main > a:first-child {
+		margin-left: 0;
+	}
+
+	.nav__main > a:hover {
+		color: var(--color-nav-link-hover);
+	}
+
+	.nav__burger-menu {
+		/*	display: flex;*/
+		display: none;
+	}
+}
+
+/* Up to 700px */
+@media all and (max-width: 700px) {
+
+	.header__main {
+		height: var(--header-height-alt);
+	}
+
+	.header__container {
+		padding-left: calc(var(--gutter-default));
+		padding-right: calc(var(--gutter-default));
+	}
+
+	.header__logo > img {
+		height: calc(var(--header-height-alt) * 0.75);
+	}
+
+	img.header__logo {
+		height: calc(var(--header-height-alt) * 0.75);
+	}
+
+	.nav__main {
+		position: fixed;
+		top: 120vh;
+		left: 0;
+		margin: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 3000;
+		background-color: var(--color-default-transparent); /* For/during transition. */
+		flex-direction: column;
+		justify-content: center;
+		transition: top 500ms ease,
+					background-color 500ms ease;
+	}
+
+	.nav__main.shown {
+		top: 0vh;
+		background-color: var(--color-default);
+	}
+
+	.nav__main > a {
+		color: var(--color-nav-link-alt);
+		margin-left: 0;
+		margin-bottom: 25px;
+		text-transform: uppercase;
+		font-size: var(--text-size-big);
+	}
+
+	.nav__main > a:hover {
+		color: var(--color-nav-link-hover-alt);
+		transform: translateY(-5px);
+	}
+
+	/* Underlined links on hover.*/
+	/*
+	.nav__main > a::after {
+		content: '';
+		display: block;
+		width: 0px;
+		margin: 0px auto;
+		height: 2px;
+		background-color: var(--color-nav-link-alt);
+		border-radius: 1px;
+		transition: width var(--transition-duration-default) ease-out,
+		transform var(--transition-duration-default) ease-out;
+	}
+
+	.nav__main > a:hover::after {
+		width: 100%;
+		transform: translateY(7px);
+	}
+	*/
+
+	.nav__burger-menu {
+		display: flex;
+	}
+
+	.footer__container {
+		padding-left: calc(var(--gutter-default));
+		padding-right: calc(var(--gutter-default));
+	}
+
+	section.video {
+		width: 90%;
+	}
+}
+
+/* Up to 375px */
+@media all and (max-width: 375px) {
+
+	h1 { font-size: 2em;   margin: 1em  0; }
+	h2 { font-size: 1.3em; margin: 1em  0; }
+
+	/* Adapting those */
+	h1 + .sub-heading { margin-top: calc(var(--gutter-thin) - 2em);   margin-bottom: calc(2em - var(--gutter-thin));   }
+	h2 + .sub-heading { margin-top: calc(var(--gutter-thin) - 1.3em); margin-bottom: calc(1.3em - var(--gutter-thin)); }
+
+	.header__container {
+		padding-left: calc(var(--gutter-medium));
+		padding-right: calc(var(--gutter-medium));
+	}
+
+	main {
+		padding: var(--gutter-medium) 0;
+	}
+
+	.header__logo > img {
+		/* .nav__burger-menu has flex-shrink: 0;
+		so it takes max space without compressing
+		the burger menu. */
+		max-width: 90%;
+		margin-left: 0;
+	}
+
+	img.header__logo {
+		max-width: 90%;
+	}
+
+	section.text {
+		padding: var(--gutter-medium);
+	}
+
+	section.video {
+		width: 100%;
+		padding: var(--gutter-medium);
+	}
+
+	form.form__centered {
+		width: 100%;
+	}
+}
+
+/* <HOVER EFFECTS> */
+
+/* User can't use :hover properly */
+@media all and (any-hover: none) {
+
+	.nav__main > a:hover {
+		opacity: 1;
+	}
+
+	.nav__main > a::after {
+		content: unset;
+		display: unset;
+		width: unset;
+		margin: unset;
+		height: unset;
+		background-color: unset;
+		box-shadow: unset;
+		border-radius: unset;
+		transition: unset;
+	}
+
+	.nav__main > a:hover::after {
+		width: unset;
+		transform: unset;
+	}
+
+	.nav__burger-menu:hover {
+		height: calc(var(--burger-menu-height) * 0.9);
+	}
+
+	.nav__burger-menu.cross:hover {
+		height: calc(var(--burger-menu-height-unfolded) * 0.9);
+	}
+}

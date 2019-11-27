@@ -1,0 +1,84 @@
+{% extends 'app/base.template.html' %}
+{% load static %}
+
+{% block document-title %}{{ title }}{% endblock %}
+
+{% block content %}
+	<main>
+		<section class="text">
+			<h1>{{ title }}</h1>
+		</section>
+		<section class="side-by-side right-bigger reverse-on-squeeze">
+			<div class="image">
+				<img src="{% static 'app/img/map.svg' %}" alt="" class="scalable rounded">
+			</div>
+			<div>
+				<div class="contact__help-message">
+					<h2>Need help? Let's talk about it...</h2>
+					<p>Be specific, and don't forget to leave an email address if you're waiting for an answer.</p>
+				</div>
+				<form class="form__contact" action="xhr-contact" method="post" enctype="application/x-www-form-urlencoded">
+					<p class="form__success"></p>
+					<p class="form__error"></p>
+					<label class="" for="contact__name">Name</label>
+					<input type="text" class="" name="contact[name]" id="contact__name" placeholder="John Doe">
+					<label class="" for="contact__email">Email</label>
+					<input type="email" class="" name="contact[email]" id="contact__email" placeholder="your@email.com">
+					<label class="required" for="contact__message">Message</label>
+					<textarea class="big" name="contact[message]" id="contact__message" placeholder="Your message" required></textarea>
+					<div class="progress-bar"><div class="progress"></div></div>
+					<button class="highlight loader">Send</button>
+				</form>
+			</div>
+		</section>
+	</main>
+
+	<script src="{% static 'app/js/TextAreaAutoResize-19.6.6.class.js' %}"></script>
+	<script src="{% static 'app/js/Form-19.6.22.class.js' %}"></script>
+	<script>
+		(function () {
+			new TextAreaAutoResize(document.querySelector('#contact__message'));
+		})();
+
+		(function() {
+
+			let form = document.querySelector('form.form__contact');
+			let formSuccess = form.querySelector('p.form__success');
+			let formError = form.querySelector('p.form__error');
+			let message = form.querySelector('#contact__message'); // textarea
+
+			let success = response => {
+
+				// Clear message (textarea)
+				message.value = '';
+
+				formError.textContent = '';
+
+				if (typeof response.message !== 'undefined'
+				    && response.message !== null) {
+
+					formSuccess.innerHTML = response.message;
+				}
+			};
+
+			let error = response => {
+
+				formSuccess.textContent = '';
+
+				if (typeof response.message !== 'undefined'
+				    && response.message !== null) {
+
+					formError.innerHTML = response.message;
+				}
+			};
+
+			new Form(form,
+				success,
+				error,
+				form.querySelector('button.loader'),
+				form.querySelector('.progress-bar')
+			);
+
+		})();
+	</script>
+{% endblock %}
