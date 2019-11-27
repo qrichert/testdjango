@@ -1,6 +1,8 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 
+import json
+
 # Create your views here.
 
 
@@ -30,6 +32,20 @@ def about(request):
 
 def contact(request):
 	title = 'Contact'
+
+	if 'contact[message]' in request.POST:
+		message = request.POST.get('contact[message]', None)
+
+		if message:
+			return HttpResponse(json.dumps({
+				'message': "Thank you! We will answer shortly!",
+				'status': 'SUCCESS'
+			}))
+		else:
+			return HttpResponse(json.dumps({
+				'message': "The form contains errors.",
+				'status': 'ERROR'
+			}))
 
 	return render(
 		request,

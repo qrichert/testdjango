@@ -17,7 +17,7 @@
 					<h2>Need help? Let's talk about it...</h2>
 					<p>Be specific, and don't forget to leave an email address if you're waiting for an answer.</p>
 				</div>
-				<form class="form__contact" action="xhr-contact" method="post" enctype="application/x-www-form-urlencoded">
+				<form class="form__contact" action="#" method="post" enctype="application/x-www-form-urlencoded">
 					<p class="form__success"></p>
 					<p class="form__error"></p>
 					<label class="" for="contact__name">Name</label>
@@ -28,6 +28,7 @@
 					<textarea class="big" name="contact[message]" id="contact__message" placeholder="Your message" required></textarea>
 					<div class="progress-bar"><div class="progress"></div></div>
 					<button class="highlight loader">Send</button>
+					{% csrf_token %}
 				</form>
 			</div>
 		</section>

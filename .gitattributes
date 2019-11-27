@@ -1,4 +1,5 @@
-app/static/css/goji.css linguist-vendored
-app/static/css/inputs.css linguist-vendored
-app/static/css/reset.css linguist-vendored
-app/static/js/* linguist-vendored
+app/static/app/css/goji.css linguist-vendored
+app/static/app/css/inputs.css linguist-vendored
+app/static/app/css/reset.css linguist-vendored
+app/static/app/js/* linguist-vendored
+*.html linguist-language=Python
